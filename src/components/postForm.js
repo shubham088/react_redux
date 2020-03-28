@@ -1,59 +1,64 @@
 import React from 'react'
+import { connect } from "react-redux";
+import {addPosts} from '../actions'
 
-export class PostForms extends React.Component{
+class PostForms extends React.Component{
   constructor(props){
     super(props)
-    this.state = {
-      title : '',
-      body : ''
-    }
     this.change = this.change.bind(this)
     this.submit = this.submit.bind(this)
+    console.log(this.props.Title);
   }
 
   change(event){
-    this.setState({
-      [event.target.name] : event.target.value
-      }
-    )
   }
 
-  submit(event){
-    event.preventDefault();
-    const post = {
-      title : this.state.title,
-      body : this.state.body
+  submit(e){
+    e.preventDefault();
+    const new_post ={
+      title : document.getElementById('title').value,
+      body : document.getElementById('body').value
     }
-    //add this post to url
-    fetch('https://jsonplaceholder.typicode.com/posts',
-    {
-      method : 'POST',
-      headers : {
-        'content-type' : 'application/json'
-      },
-      body : JSON.stringify(post)
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    const title = document.getElementById('title').value;
+    const body = document.getElementById('body').value;
+    console.log(new_post);
+    this.props.addPosts(title, body);
   }
 
   render(){
     return(
       <div>
       <h2>Add Post</h2>
-      <form onSubmit={this.subimt}>
+      <form >
         <div>
-        Title : <input type="text" name="title" value={this.state.title} onChange={this.change}/>
+        Title : <input type="text" id="title" name="title"  onChange={this.change}/>
         </div>
         <br />
         <div>
-        Body : <textarea type="text" name="body" value={this.state.body} onChange={this.change} />
+        Body :<textarea type="text" id="body" name="body"  onChange={this.change} />
         </div>
-        <button>Submit</button>
+        <button type="button" onClick={this.submit}>Submit</button>
       </form>
-      <p>{this.state.title}</p>
+
       </div>
 
     )
   }
 }
+
+const mapStateToProps = state => {
+return {
+  Title : state.recent.Title,
+  Body : state.recent.Body
+};
+}
+
+const mapDispatchToProps = dispatch => {
+ return {
+   addPosts : (title, body) => {
+     dispatch(addPosts(title, body))
+   },
+ }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostForms);
