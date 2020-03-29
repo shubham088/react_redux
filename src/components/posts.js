@@ -6,19 +6,25 @@ class Posts extends React.Component{
   constructor(props){
     super(props)
     console.log("from post");
-    console.log(this.props.posts);
   }
 
-  componentWillMount() {
+  componentWillMount(){
     this.props.fetchPosts();
   }
 
   render(){
+    const postItems = this.props.posts.map(function(singlePost){
+      return (
+        <div id={singlePost.id}>
+        <h3>{singlePost.title}</h3>
+        <p>{singlePost.body}</p>
+        </div>
+      )
+    })
     return(
       <div>
       <h1>Posts</h1>
-      <p></p>
-      <button onClick={this.props.fetchPosts}>Fetch Posts</button>
+      {postItems}
       </div>
     )
   }
