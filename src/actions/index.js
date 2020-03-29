@@ -1,19 +1,4 @@
-// export const fetchPosts = () =>{
-//   console.log("fetching action fired");
-//   fetch('https://jsonplaceholder.typicode.com/posts')
-//   .then(response => response.json())
-//   .then(function(json){
-//     console.log('this is it');
-//     console.log(json);
-//     return {
-//       type : 'FETCH_POSTS',
-//       payload : {
-//         data : [json]
-//       }
-//     }
-//   })
-// }
-import axios from "axios";
+
 export const addPosts = (title, body) => {
   console.log("add post action fired....");
   return {
