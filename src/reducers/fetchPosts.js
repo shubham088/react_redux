@@ -18,7 +18,7 @@ const fetchPostReducer = (state = initialState, action) => {
     return {
       ...state,
       isFetching : false,
-      posts : [...state, ...action.payload.data]
+      posts : [...action.payload.data]
     }
     break;
     default :
