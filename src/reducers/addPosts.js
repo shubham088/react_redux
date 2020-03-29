@@ -1,9 +1,10 @@
 const initialState = {
-  Title : 'hello_guys',
+  Title : '',
   Body : ''
 }
 
 const addPostReducer = (state=initialState, action) => {
+  console.log(action);
   switch(action.type){
     case 'ADD_POST':
       return {

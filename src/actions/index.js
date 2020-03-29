@@ -1,14 +1,15 @@
-
-export const fetchPosts = () =>{
-  console.log("im  here");
+export const fetchPosts = (json) =>{
+  console.log("fetching.....from action");
+  console.log(json);
   fetch('https://jsonplaceholder.typicode.com/posts')
   .then(response => response.json())
   .then(function(json){
-    console.log("json");
+    console.log('this is it');
+    console.log(json);
     return {
       type : 'FETCH_POSTS',
       payload : {
-        posts : json,
+        data : json
       }
     }
   })
