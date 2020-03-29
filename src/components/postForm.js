@@ -7,7 +7,7 @@ class PostForms extends React.Component{
     super(props)
     this.change = this.change.bind(this)
     this.submit = this.submit.bind(this)
-    console.log(this.props.Title);
+
   }
 
   change(event){
@@ -15,13 +15,9 @@ class PostForms extends React.Component{
 
   submit(e){
     e.preventDefault();
-    const new_post ={
-      title : document.getElementById('title').value,
-      body : document.getElementById('body').value
-    }
     const title = document.getElementById('title').value;
     const body = document.getElementById('body').value;
-    console.log(new_post);
+    //console.log(new_post);
     this.props.addPosts(title, body);
   }
 

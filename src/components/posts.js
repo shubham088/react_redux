@@ -6,14 +6,18 @@ class Posts extends React.Component{
   constructor(props){
     super(props)
     console.log("from post");
-    console.log(this.props);
+    console.log(this.props.posts);
+  }
+
+  componentWillMount() {
+    this.props.fetchPosts();
   }
 
   render(){
     return(
       <div>
       <h1>Posts</h1>
-      <p>{this.props.posts[0].userId}</p>
+      <p></p>
       <button onClick={this.props.fetchPosts}>Fetch Posts</button>
       </div>
     )
@@ -28,7 +32,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPosts : () =>dispatch(fetchPosts)
+    fetchPosts : () =>dispatch(fetchPosts())
   }
 }
 

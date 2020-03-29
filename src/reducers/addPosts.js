@@ -4,7 +4,7 @@ const initialState = {
 }
 
 const addPostReducer = (state=initialState, action) => {
-  console.log(action);
+  console.log("add post reducer fired...");
   switch(action.type){
     case 'ADD_POST':
       return {
